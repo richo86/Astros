@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.carousel-container {
+  overflow: hidden;
+  width: 100%; /* Make carousel container full width */
+  margin: 0 auto;
+  max-height: 500px; /* Limit vertical size of the carousel container */
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%; /* Changed to 100% */
+  height: 500px; /* Ensure carousel height is limited */
+}
+
+.carousel-item {
+  width: 100%; /* Take full width of carousel-container */
+  flex-shrink: 0;
+  height: 500px; /* Ensure carousel item height is limited */
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%; /* Take full height of carousel-item */
+  max-height: 500px; /* Limit vertical size of the carousel image */
+  display: block;
+}
