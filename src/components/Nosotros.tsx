@@ -7,7 +7,8 @@
 
 import { Typography, Grid, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useEffect, useRef, useState } from 'react';
+// ...existing code...
+import usImg from '../assets/images/engineer-smiling.jpg';
 
 interface VisibilityProps {
   readonly isVisible: boolean;
@@ -23,14 +24,14 @@ const NosotrosSection = styled('section')<VisibilityProps>(() => ({
 }));
 
 const BackgroundImage = styled('div')<VisibilityProps>(({ isVisible }) => ({
-  position: 'fixed',
+  position: 'absolute',
   top: 0,
   left: 0,
-  right: 0,
-  bottom: 0,
+  width: '100%',
+  height: '100%',
   zIndex: 0,
-  transition: 'opacity 0.2s ease-out',
   opacity: isVisible ? 1 : 0,
+  transition: 'opacity 0.2s ease-out',
   '& img': {
     width: '100%',
     height: '100%',
@@ -54,29 +55,12 @@ const ContentGrid = styled(Grid)({
 });
 
 export function Nosotros() {
-  const [isVisible, setIsVisible] = useState(true);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
+  const isVisible = true;
   return (
-    <NosotrosSection ref={sectionRef} isVisible={isVisible}>
+    <NosotrosSection isVisible={isVisible}>
       <BackgroundImage isVisible={isVisible}>
         <img
-          src="https://images.unsplash.com/photo-1581092160607-ee22621dd758"
+          src={usImg}
           alt="Equipo de trabajo profesional"
         />
       </BackgroundImage>
@@ -103,10 +87,11 @@ export function Nosotros() {
               variant="h3"
               component="h2"
               gutterBottom
-              color="text.primary"
+              color="#0c0753"
               sx={{
                 fontWeight: 'bold',
                 mb: 4,
+                mt: { xs: 4, md: 0 },
                 fontSize: { xs: '2.5rem', md: '4rem' }
               }}
             >
@@ -116,19 +101,23 @@ export function Nosotros() {
               sx={{
                 width: '20%',
                 height: '6px',
-                backgroundColor: 'warning.main',
+                backgroundColor: '#F2C82F',
                 borderRadius: '3px',
                 mb: 4
               }}
             />
             <Typography variant="body1" color="text.secondary" sx={{ mb: 3, fontSize: '1.1rem' }}>
-              Somos una empresa líder en servicios eléctricos con más de una década de experiencia en el mercado.
-              Nuestro compromiso con la excelencia y la seguridad nos ha convertido en un referente en la industria.
+              Somos una empresa multinacional dedicada a proveer soluciones integrales que nos permiten ofrecer servicios
+               y productos de calidad, especializados en las diferentes ramas de la ingeniería,
+                así mismo en las áreas de electricidad, seguridad industrial, telecomunicaciones,
+                 construcción entre otras, con la finalidad de brindarles de esta forma el mejor servicio,
+                  que satisfaga las necesidades de nuestros clientes. 
+
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
-              Contamos con un equipo de profesionales altamente capacitados y certificados, dedicados a brindar
-              soluciones eléctricas integrales que satisfacen las necesidades específicas de cada cliente,
-              ya sea en el sector residencial, comercial o industrial.
+              Nuestra organización se encuentra conformada por un equipo multidisciplinario de colaboradores de  gran trayectoria profesional,
+               encargado de proveer la mejor experiencia a nuestros clientes, nos encontramos integrados por profesionales de la ingeniería
+                en las áreas de electricidad, telecomunicaciones, sistemas y civil.
             </Typography>
           </Box>
         </Grid>
@@ -139,7 +128,7 @@ export function Nosotros() {
           minWidth: 0,
           position: 'relative',
           order: { xs: 1, md: 2 },
-          height: { xs: '60vh', md: '100vh' }
+          height: { xs: 0, md: '100vh' }
         }} />
       </ContentGrid>
     </NosotrosSection>

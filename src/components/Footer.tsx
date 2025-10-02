@@ -14,7 +14,7 @@ function Footer() {
     <Box
       component="footer"
       sx={{
-        bgcolor: 'grey.900',
+        bgcolor: '#0c0753',
         color: 'white',
         py: 8,
       }}
@@ -29,7 +29,7 @@ function Footer() {
           </Button>
         </Box>
         <Typography variant="body2" sx={{ opacity: 0.8, mb: 2 }}>
-          &copy; 2023 Su Compañía de Servicios Eléctricos. Todos los derechos reservados.
+          &copy; 2024 Ingenieria y Servicios Integrales ASTROS SAS. Todos los derechos reservados.
         </Typography>
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1, mt: 2 }}>
           <Typography variant="body2" sx={{ opacity: 0.8 }}>Estas visitando la página de:</Typography>

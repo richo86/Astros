@@ -7,12 +7,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { styled } from '@mui/material';
 
+const MENU_HEIGHT = 80;
 const CarouselContainer = styled('div')(() => ({
   position: 'fixed',
-  top: 0,
+  top: `${MENU_HEIGHT}px`,
   left: 0,
   right: 0,
-  height: '100vh',
+  height: `calc(100vh - ${MENU_HEIGHT}px)`,
   zIndex: -1,
   '&::after': {
     content: '""',
@@ -63,7 +64,7 @@ const CarouselText = styled('div')({
   color: 'white',
   // Default size for mobile
   fontSize: '2rem',
-  width: '95%',
+  width: '100%',
   lineHeight: 1.3,
   fontWeight: 'bold',
   textAlign: 'center',
@@ -74,13 +75,13 @@ const CarouselText = styled('div')({
   // Medium screens
   '@media (min-width: 640px)': {
     fontSize: '2.5rem',
-    width: '80%',
+    width: '90%',
     lineHeight: 1.2
   },
   // Large screens
   '@media (min-width: 1024px)': {
-    fontSize: '4rem',
-    width: '70%',
+    fontSize: '3.8rem',
+    width: '80%',
     lineHeight: 1.1
   }
 });
@@ -117,7 +118,6 @@ export function Carousel({ images, shouldFadeOut }: CarouselProps) {
   return (
     <CarouselContainer className={fadeClass}>
       <CarouselText>
-        Líderes en Calidad de Construcción e Infraestructura
       </CarouselText>
       <CarouselTrack ref={carouselRef}>
         {images.map(img => (

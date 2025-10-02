@@ -1,31 +1,30 @@
 import React from 'react';
+import styles from './Map.module.css';
 
 interface MapProps {
-  // You can add props here later if needed, e.g., to customize the location
   locationUrl?: string;
-  width?: string;
-  height?: string;
   title?: string;
 }
 
 const Map: React.FC<MapProps> = ({
-  locationUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.63653402037!2d-122.0862784846925!3d37.42199987982523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fba02425dad8d%3A0x6c296c66619367e0!2sGoogleplex!5e0!3m2!1sen!2sus!4v1678886100000!5m2!1sen!2sus", // Default: Googleplex
-  width = "600",
-  height = "450",
-  title = "Google Maps Location"
-}) => {
-  return (
-    <div className="map-container">
+  locationUrl = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d497.0294148971958!2d-74.0386374!3d4.7291406!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f85c7450a9421%3A0xdfe5ead31cee5a52!2sCentro%20Comercial%20Capri%20Express!5e0!3m2!1sen!2sco!4v1748126600899!5m2!1sen!2sco",
+  title = "ISIS ASTROS Location"
+}) => {  return (
+    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
       <iframe
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          border: 0
+        }}
         src={locationUrl}
-        width={width}
-        height={height}
-        style={{ border: 0 }}
-        allowFullScreen={true}
-        loading="lazy"
+        allowFullScreen
         referrerPolicy="no-referrer-when-downgrade"
         title={title}
-      ></iframe>
+      />
     </div>
   );
 };

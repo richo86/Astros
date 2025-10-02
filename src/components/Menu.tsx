@@ -4,7 +4,8 @@
 */
 
 import React, { useState } from 'react';
-import logo from '../assets/images/logo.svg';
+import { useLocation } from '../contexts/LocationContext';
+import logo from '../assets/images/LOGO ASTROS_Fblanco.png';
 
 interface MenuLinkProps {
   readonly href: string;
@@ -22,6 +23,22 @@ function MenuLink({ href, children, onClick }: MenuLinkProps) {
 
 function Menu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { selectedCountry } = useLocation();
+  // Social media links by country
+  const socialLinks = {
+    Instagram: selectedCountry === 'Venezuela'
+      ? 'https://www.instagram.com/isiastros/'
+      : 'https://www.instagram.com/isiastroscolombia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+    TikTok: selectedCountry === 'Venezuela'
+      ? 'https://www.tiktok.com/@isiastros'
+      : 'https://www.tiktok.com/@isiastroscolombia',
+    Facebook: selectedCountry === 'Venezuela'
+      ? 'https://www.facebook.com/isiastros'
+      : 'https://www.facebook.com/isiastroscolombia',
+    LinkedIn: selectedCountry === 'Venezuela'
+      ? 'https://www.linkedin.com/company/isiastros/'
+      : 'https://www.linkedin.com/in/ingenier%C3%ADa-y-servicios-integrales-astros-sas-isiastros-980164300/',
+  };
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -43,7 +60,6 @@ function Menu() {
     setIsMenuOpen(false);
   };
 
-
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
       setIsMenuOpen(false);
@@ -63,34 +79,54 @@ function Menu() {
   }
 
   return (
-    <header className="bg-[rgb(30,45,59)] text-white fixed top-0 left-0 right-0 z-50">
+    <header className="bg-[#0c0753] text-white fixed top-0 left-0 right-0 z-50">      
       <div className="relative flex flex-col md:flex-row items-stretch h-16 md:h-20">
-        <div className="bg-yellow-400 py-2 md:py-0 -ml-[100vw] md:ml-0 pl-[100vw] md:pl-0 -mr-[100vw] md:mr-0 pr-[100vw] md:pr-0 flex items-center w-screen md:w-[280px] h-full">
+        <div className="py-2 md:py-0 -ml-[100vw] md:ml-0 pl-[100vw] md:pl-0 -mr-[100vw] md:mr-0 pr-[100vw] md:pr-0 flex items-center justify-center w-screen md:w-[200px] h-full">
           <a href="#" onClick={(e) => handleScroll(e, '#')} className="px-4">
-            <img src={logo} alt="Astros Logo" className="h-8 md:h-10" />
+            <img src={logo} alt="Astros Logo" className="h-12 md:h-16" />
           </a>
         </div>
 
         <div className="hidden md:flex flex-1 items-center justify-between px-4">
-          <div className="flex items-center space-x-3 ml-4">
+          <style>{`
+            .social-icon {
+              display: inline-block;
+              transition: transform 0.2s, box-shadow 0.2s;
+            }
+            .social-icon:hover {
+              transform: scale(1.15);
+              box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+              color: #d1d5db;
+            }
+          `}</style>
+          <div className="flex items-center gap-x-1 ml-4">
             <span className="text-lg">Siguenos:</span>
-            <a href="YOUR_INSTAGRAM_URL" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-gray-300">
+            <a href={socialLinks.Instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon ml-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             </a>
-            <a href="YOUR_FACEBOOK_URL" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-gray-300">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            <a href={socialLinks.TikTok} target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48">
+                <g>
+                  <path d="M33.5 13.5c-1.2 0-2.5-1.3-2.5-2.5V8h-4v20.5c0 2.5-2 4.5-4.5 4.5s-4.5-2-4.5-4.5 2-4.5 4.5-4.5c.3 0 .7.1 1 .2v-2.2c-.3-.1-.7-.2-1-.2-3.6 0-6.5 2.9-6.5 6.5s2.9 6.5 6.5 6.5 6.5-2.9 6.5-6.5V17.2c1.1.6 2.3.8 3.5.8h1v-4.5h-1z" fill="#25F4EE"/>
+                  <path d="M33.5 13.5c-1.2 0-2.5-1.3-2.5-2.5V8h-2v20.5c0 2.5-2 4.5-4.5 4.5s-4.5-2-4.5-4.5 2-4.5 4.5-4.5c.3 0 .7.1 1 .2v-2.2c-.3-.1-.7-.2-1-.2-3.6 0-6.5 2.9-6.5 6.5s2.9 6.5 6.5 6.5 6.5-2.9 6.5-6.5V17.2c1.1.6 2.3.8 3.5.8h1v-4.5h-1z" fill="#FE2C55"/>
+                  <path d="M33.5 13.5c-1.2 0-2.5-1.3-2.5-2.5V8h-1v20.5c0 2.5-2 4.5-4.5 4.5s-4.5-2-4.5-4.5 2-4.5 4.5-4.5c.3 0 .7.1 1 .2v-2.2c-.3-.1-.7-.2-1-.2-3.6 0-6.5 2.9-6.5 6.5s2.9 6.5 6.5 6.5 6.5-2.9 6.5-6.5V17.2c1.1.6 2.3.8 3.5.8h1v-4.5h-1z" fill="#fff"/>
+                </g>
+              </svg>
             </a>
-            <a href="YOUR_TIKTOK_URL" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="hover:text-gray-300">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.59 3.09 1.75 4.17 1.12 1.02 2.37 1.57 3.82 1.72v2.9c-1.85-.08-3.62-.74-5.01-1.92-.64-.56-1.11-1.26-1.44-2.03-.32-.75-.5-1.57-.59-2.41a16.12 16.12 0 0 1-.02-2.43zM10.125 6.43H7.69v13.105c0 .775-.63 1.405-1.404 1.405h-2.96c-.775 0-1.404-.63-1.404-1.405V6.43H-.025V3.555h10.15v2.875zM16.5 6.013c.03 0 .06.003.1.003.02-.003.05-.003.08-.003v2.876h3.805V6.013h-3.985zm.08 13.57c.775 0 1.405-.63 1.405-1.404V8.888H14.11v9.288c0 .775.63 1.405 1.404 1.405h1.066z"/></svg>
+            <a href={socialLinks.Facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>            
+            <a href={socialLinks.LinkedIn} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon ml-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
             </a>
           </div>
 
           <nav className="flex space-x-8 items-center text-lg mr-9">
-          <MenuLink href="#servicios" onClick={(e) => handleScroll(e, '#servicios')}>Servicios</MenuLink>
-          <MenuLink href="#nosotros" onClick={(e) => handleScroll(e, '#nosotros')}>Nosotros</MenuLink>
-          <MenuLink href="#productos" onClick={(e) => handleScroll(e, '#productos')}>Productos</MenuLink>
-          <MenuLink href="#contacto" onClick={(e) => handleScroll(e, '#contacto')}>Contacto</MenuLink>
-        </nav>
+            <MenuLink href="#productos" onClick={(e) => handleScroll(e, '#productos')}>Productos</MenuLink>
+            <MenuLink href="#servicios" onClick={(e) => handleScroll(e, '#servicios')}>Servicios</MenuLink>
+            <MenuLink href="#nosotros" onClick={(e) => handleScroll(e, '#nosotros')}>Nosotros</MenuLink>
+            <MenuLink href="#contacto" onClick={(e) => handleScroll(e, '#contacto')}>Contacto</MenuLink>
+          </nav>
       </div>
 
         <button

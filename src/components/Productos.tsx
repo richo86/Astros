@@ -1,45 +1,91 @@
 import React, { useState } from 'react';
+import { ProductCarousel } from './ProductCarousel';
 import {
   Card,
   CardMedia,
   Typography,
   Grid,
   Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  IconButton,
   CardActionArea,
 } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
+import img1 from '../assets/images/Iluminacion.png';
+import img2 from '../assets/images/Cables.png';
+import img3 from '../assets/images/Plantas.png';
+import img4 from '../assets/images/Terminales.png';
+import img5 from '../assets/images/Cintas.png';
+import img6 from '../assets/images/Empalmes.png';
+import img7 from '../assets/images/Protecciones.png';
+import img8 from '../assets/images/Craneal.png';
+import img9 from '../assets/images/Visual.png';
+import img10 from '../assets/images/Auditiva.png';
+import img11 from '../assets/images/Respiratoria.png';
+import img12 from '../assets/images/Corporal.png';
+import img13 from '../assets/images/Guantes.png';
+import img14 from '../assets/images/Botas.png';
+import img15 from '../assets/images/Pinturas.png';
+import img16 from '../assets/images/Discos.png';
+import img17 from '../assets/images/Tuberias.png';
+import img18 from '../assets/images/Impermeabilizacion.png';
+import img19 from '../assets/images/Herramientas.png';
+import img20 from '../assets/images/Herramientas.png';
+import img21 from '../assets/images/Herramientas.png';
+import img22 from '../assets/images/Herramientas.png';
 
 const products = [
   {
-    title: 'Paneles Eléctricos',
-    description: 'Paneles de última generación para todo tipo de instalaciones.',
-    image: '/images/panel-electrico.webp',
-    details: 'Descripción detallada de los paneles eléctricos, incluyendo especificaciones técnicas, modelos disponibles y aplicaciones comunes.'
+    title: 'Productos Eléctricos',
+    description: 'Soluciones completas en baja y media tensión.',
+    cover: img1,
+    images: [img1, img2, img3, img4, img5, img6, img7],
+    texts: [
+      'Sistemas de iluminación',
+      'Cables',
+      'Plantas eléctricas',
+      'Terminales de baja y media tension',
+      'Cintas eléctricas',
+      'Empalmes eléctricos de baja y media tension',
+      'Protecciones eléctricas',
+    ]
   },
   {
-    title: 'Iluminación LED',
-    description: 'Soluciones de iluminación eficiente y duradera.',
-    image: '/images/iluminacion-led.webp',
-    details: 'Información completa sobre nuestras soluciones de iluminación LED, beneficios de ahorro energético, tipos de luminarias y proyectos destacados.'
+    title: 'Equipos de Protección Personal',
+    description: 'Dotación completa para seguridad industrial.',
+    cover: img1,
+    images: [img8, img9, img10, img11, img12, img13, img14],
+    texts: [
+      'Protección craneal',
+      'Protección visual',
+      'Protección auditiva',
+      'Protección respiratoria',
+      'Protección corporal',
+      'Guantes',
+      'Botas de seguridad'
+    ]
   },
   {
-    title: 'Generadores',
-    description: 'Sistemas de respaldo de energía para su tranquilidad.',
-    image: '/images/generador.webp',
-    details: 'Detalles sobre los generadores que ofrecemos, capacidades, tipos de combustible, características de funcionamiento automático y mantenimiento.'
+    title: 'Productos Ferreteros',
+    description: 'Herramientas profesionales y materiales de ferretería.',
+    cover: img1,
+    images: [img15, img16, img17, img18, img19],
+    texts: [
+      'Pinturas',
+      'Discos',
+      'Tuberías',
+      'Impermeabilizantes',
+      'Herramientas'
+    ]
   },
   {
-    title: 'Material Eléctrico',
-    description: 'Productos de alta calidad para instalaciones seguras.',
-    image: '/images/material-electrico.webp',
-    details: 'Catálogo de material eléctrico diverso, incluyendo cables, interruptores, enchufes, cajas de conexión y normativas de seguridad.'
+    title: 'Unidad de servicios',
+    description: 'Servicios integrales eléctricos y de mantenimiento.',
+    cover: img1,
+    images: [img20, img21, img22],
+    texts: [
+      'Instalaciones eléctricas en general: Baja y media tensión, empalmes y terminales, estudios y balanceos de carga, plantas eléctricas, tableros de control, protecciones eléctricas, tableros de control, protecciones eléctricas, iluminación interior y exterior, sistemas fotovoltaicos (paneles solares)',
+      'Capacitaciones y asesorías técnicas en: Teoria de cables, seminarios de conexiones elécricas, taller de empalmes y terminales de media tensión y equipos de protección personal',
+      'Decoración de espacios interiores y exteriores, fabricación de muebles personalizados para ornamentación, pintura y adecuación de áreas',
+    ]
   }
 ];
 
@@ -56,25 +102,6 @@ const ProductCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const CardOverlay = styled(Box)(({ theme }) => ({
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  opacity: 0,
-  transition: theme.transitions.create('opacity'),
-  zIndex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  padding: theme.spacing(2),
-  textAlign: 'center',
-  color: '#fff',
-}));
-
 const TextContent = styled(Box)(({ theme }) => ({
     position: 'absolute',
     bottom: 0,
@@ -89,67 +116,55 @@ const TextContent = styled(Box)(({ theme }) => ({
   }));
 
 
-export function Productos() {
+const ProductosComponent = () => {
+  console.log('Productos rendered')
   const [open, setOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<(typeof products)[0] | null>(null);
+  const [selectedProductIdx, setSelectedProductIdx] = useState<number | null>(null);
 
-  const handleClickOpen = (product: (typeof products)[0]) => {
-    setSelectedProduct(product);
+  // Preload carousel images on mount
+  React.useEffect(() => {
+    products.forEach(product => {
+      product.images.forEach(imgSrc => {
+        const img = new window.Image();
+        img.src = imgSrc;
+      });
+    });
+  }, []);
+
+  const handleClickOpen = (idx: number) => {
+    setSelectedProductIdx(idx);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setSelectedProduct(null);
+    setSelectedProductIdx(null);
   };
 
-  return (
-    <Box sx={{ px: { xs: 3, md: 6 }, py: { xs: 4, md: 8 }, mb: 8 }}>
-       <Box sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          mb: 4
-        }}>
-          <Typography
-            variant="h3"
-            component="h2"
-            gutterBottom
-            color="text.primary"
+  type ProductType = typeof products[0];
+  interface ProductCardGridProps {
+    products: ProductType[];
+    handleClickOpen: (idx: number) => void;
+  }
+
+  const ProductCardGrid = React.memo(function ProductCardGrid({ products, handleClickOpen }: ProductCardGridProps) {
+    return (
+      <Grid container sx={{ display: 'flex', flexWrap: 'wrap', maxWidth: 'lg', mx: 'auto', justifyContent: 'center' }}>
+        {products.map((product, idx) => (
+          <Grid
+            key={product.title}
             sx={{
-              textAlign: 'center',
-              fontSize: { xs: '2.5rem', md: '3rem' },
-              mb: 1,
-              fontWeight: 'bold'
+              flex: { xs: '0 0 100%', sm: '0 0 30%', md: '0 0 40%' },
+              justifyContent: 'center',
+              minWidth: 0,
+              padding: (theme) => theme.spacing(1.5)
             }}
           >
-            Nuestros Productos
-          </Typography>
-          <Box
-            sx={{
-              width: '20%',
-              height: '6px',
-              backgroundColor: 'warning.main',
-              borderRadius: '3px'
-            }}
-          />
-        </Box>
-        <Grid container sx={{ display: 'flex', flexWrap: 'wrap', maxWidth: 'lg', mx: 'auto', justifyContent: 'center' }}>
-          {products.map((product) => (
-            <Grid
-              key={product.title}
-              sx={{
-                flex: { xs: '0 0 100%', sm: '0 0 30%', md: '0 0 40%' },
-                justifyContent: 'center',
-                minWidth: 0,
-                padding: (theme) => theme.spacing(1.5)
-              }}
-            >
-              <ProductCard>
-                <CardActionArea onClick={() => handleClickOpen(product)} sx={{ height: '100%' }}>
-                  <CardMedia
+            <ProductCard>
+              <CardActionArea onClick={() => handleClickOpen(idx)} sx={{ height: '100%' }}>
+                <CardMedia
                   component="img"
-                  image={product.image}
+                  image={product.cover}
                   alt={product.title}
                   sx={{
                     position: 'absolute',
@@ -161,52 +176,80 @@ export function Productos() {
                     zIndex: 0,
                   }}
                 />
-                 <TextContent className="text-content">
-                    <Typography variant="h6" component="div" gutterBottom>
-                      {product.title}
-                    </Typography>
-                    <Typography variant="body2">
-                      {product.description}
-                    </Typography>
-                  </TextContent>
+                <TextContent className="text-content">
+                  <Typography variant="h6" component="div" gutterBottom>
+                    {product.title}
+                  </Typography>
+                  <Typography variant="body2">
+                    {product.description}
+                  </Typography>
+                </TextContent>
               </CardActionArea>
             </ProductCard>
-            </Grid>
-          ))}
-        </Grid>
+          </Grid>
+        ))}
+      </Grid>
+    );
+  });
 
-      <Dialog onClose={handleClose} open={open} maxWidth="sm" fullWidth>
-        <DialogTitle sx={{ m: 0, p: 2 }}>
-          {selectedProduct?.title}
-          <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={{
-              position: 'absolute',
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent dividers>
-           <CardMedia
-              component="img"
-              height="200"
-              image={selectedProduct?.image}
-              alt={selectedProduct?.title}
-              sx={{ mb: 2, objectFit: 'contain' }}
-            />
-          <Typography gutterBottom>
-            {selectedProduct?.details}
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cerrar</Button>
-        </DialogActions>
-      </Dialog>
+  return (
+    <Box sx={{ px: { xs: 3, md: 6 }, py: { xs: 4, md: 16 }, mb: 0, backgroundColor: '#ffffffff', minHeight: '100vh' }}>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        mb: 4
+      }}>
+        <Typography
+          variant="h3"
+          component="h2"
+          gutterBottom
+          color="#0c0753"
+          sx={{
+            textAlign: 'center',
+            fontSize: { xs: '2.5rem', md: '3rem' },
+            mt:7,
+            mb: 1,
+            fontWeight: 'bold'
+          }}
+        >            Productos
+        </Typography>
+        <Typography
+          variant="h6"
+          component="h3"
+          gutterBottom
+          color="text.secondary"
+          sx={{
+            textAlign: 'center',
+            maxWidth: '800px',
+            mb: 3,
+            mt: 2
+          }}
+        >
+          Soluciones integrales en productos eléctricos, seguridad industrial y servicios técnicos especializados
+        </Typography>
+        <Box
+          sx={{
+            width: '20%',
+            height: '6px',
+            backgroundColor: '#F2C82F',
+            borderRadius: '3px'
+          }}
+        />
+      </Box>
+      <ProductCardGrid products={products} handleClickOpen={handleClickOpen} />
+
+      {selectedProductIdx !== null && (
+        <ProductCarousel
+          open={open}
+          onClose={handleClose}
+          images={products[selectedProductIdx].images}
+          texts={products[selectedProductIdx].texts}
+          title={products[selectedProductIdx].title}
+        />
+      )}
     </Box>
   );
 }
+
+export const Productos = React.memo(ProductosComponent);

@@ -16,13 +16,14 @@ export function Contacto() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        mb: 2
+        mb: 2,
+        mt: 14
       }}>
         <Typography
           variant="h3"
           component="h2"
           gutterBottom
-          color="text.primary"
+          color="#0c0753"
           sx={{
             textAlign: 'center',
             fontSize: { xs: '2.5rem', md: '3rem' },
@@ -36,7 +37,7 @@ export function Contacto() {
           sx={{
             width: '10%',
             height: '6px',
-            backgroundColor: 'warning.main',
+            backgroundColor: '#F2C82F',
             borderRadius: '3px',
             mb: 2
           }}
@@ -58,18 +59,19 @@ export function Contacto() {
         >
           <Box sx={{
             mb: 4,
-            mt: 6,
+            mt: 3,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start'
           }}>
-            <Typography variant="h5" component="h3" gutterBottom color="primary" sx={{ textAlign: 'left', width: '100%' }}>
+            <Typography variant="h5" component="h3" gutterBottom color="black" sx={{ textAlign: 'left', width: '100%' }}>
               Oficina principal
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, mt: 3 }}>
               <LocationOnIcon sx={iconStyle} />
               <Typography variant="body1">
-                123 Calle Principal<br />
+                Carrera 14 #147-70, local 56<br />
+                Centro Comercial Capri Express<br />
                 Bogotá, Colombia<br />
               </Typography>
             </Box>
@@ -77,33 +79,33 @@ export function Contacto() {
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <PhoneIcon sx={iconStyle} />
               <Typography variant="body1">
-                +52 (55) 1234-5678
+                (+57) 300-264 0220 <br />
+                (+57) 6012489420
               </Typography>
             </Box>
 
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <EmailIcon sx={iconStyle} />
               <Typography variant="body1">
-                contacto@isisastros.com
+                contacto@isiastros.com
               </Typography>
             </Box>
 
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
               <AccessTimeIcon sx={iconStyle} />
               <Typography variant="body1">
-                Lunes a Viernes: 9:00 AM - 6:00 PM<br />
-                Sábados: 9:00 AM - 1:00 PM
+                Lunes a Viernes: 8:00 AM - 5:00 PM<br />
+                Sábados: 8:00 AM - 12:00 PM
               </Typography>
             </Box>
-
             <Button
               variant="contained"
               color="primary"
               size="large"
               sx={{
-                bgcolor: 'rgb(34, 197, 94)',
+                bgcolor: '#0c0753',
                 '&:hover': {
-                  bgcolor: 'rgb(21, 128, 61)',
+                  bgcolor: '#0c075388',
                 },
               }}
             >
@@ -118,9 +120,15 @@ export function Contacto() {
             minWidth: 0,
             padding: theme => theme.spacing(2)
           }}
-        >
-          <Paper elevation={3} sx={{ height: '100%', minHeight: '400px' }}>
-            <GoogleMapComponent />
+        >          <Paper elevation={3} sx={{ 
+              height: '400px',
+              width: '100%',
+              display: 'flex',
+              overflow: 'hidden'
+            }}>
+            <Box sx={{ flexGrow: 1 }}>
+              <GoogleMapComponent />
+            </Box>
           </Paper>
         </Grid>
       </Grid>

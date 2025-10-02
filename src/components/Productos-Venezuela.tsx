@@ -115,7 +115,7 @@ export function ProductosVenezuela() {
             variant="h3"
             component="h2"
             gutterBottom
-            color="text.primary"
+            color="#0c0753"
             sx={{
               textAlign: 'center',
               fontSize: { xs: '2.5rem', md: '3rem' },
@@ -123,13 +123,13 @@ export function ProductosVenezuela() {
               fontWeight: 'bold'
             }}
           >
-            Nuestros Productos Venezuela
+            Nuestros Productos
           </Typography>
           <Box
             sx={{
               width: '20%',
               height: '6px',
-              backgroundColor: 'warning.main',
+              backgroundColor: '#F2C82F',
               borderRadius: '3px'
             }}
           />
@@ -194,10 +194,9 @@ export function ProductosVenezuela() {
         <DialogContent dividers>
            <CardMedia
               component="img"
-              height="200"
               image={selectedProduct?.image}
               alt={selectedProduct?.title}
-              sx={{ mb: 2, objectFit: 'contain' }}
+              sx={{ height: '140px', width: '100%', objectFit: 'cover', mb: 2 }}
             />
           <Typography gutterBottom>
             {selectedProduct?.details}
