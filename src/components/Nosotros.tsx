@@ -8,7 +8,7 @@
 import { Typography, Grid, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // ...existing code...
-import usImg from '../assets/images/engineer-smiling.jpg';
+import usImg from '../assets/images/Nosotros.jpg';
 
 interface VisibilityProps {
   readonly isVisible: boolean;

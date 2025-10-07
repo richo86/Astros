@@ -30,13 +30,13 @@ function Menu() {
       ? 'https://www.instagram.com/isiastros/'
       : 'https://www.instagram.com/isiastroscolombia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
     TikTok: selectedCountry === 'Venezuela'
-      ? 'https://www.tiktok.com/@isiastros'
-      : 'https://www.tiktok.com/@isiastroscolombia',
+      ? 'https://www.tiktok.com/@isiastros.colombia'
+      : 'https://www.tiktok.com/@isiastros.colombia',
     Facebook: selectedCountry === 'Venezuela'
       ? 'https://www.facebook.com/isiastros'
       : 'https://www.facebook.com/isiastroscolombia',
     LinkedIn: selectedCountry === 'Venezuela'
-      ? 'https://www.linkedin.com/company/isiastros/'
+      ? 'https://www.linkedin.com/in/ingenier%C3%ADa-y-servicios-integrales-astros-sas-isiastros-980164300/'
       : 'https://www.linkedin.com/in/ingenier%C3%ADa-y-servicios-integrales-astros-sas-isiastros-980164300/',
   };
 

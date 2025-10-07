@@ -10,6 +10,10 @@ import GoogleMapComponent from './Map';
 const iconStyle = { mr: 2, color: 'primary.main' };
 
 export function Contacto() {
+  const handleContactClick = () => {
+    window.open('https://wa.me/+573002640220', '_blank')
+  };
+
   return (
     <Box sx={{ px: { xs: 3, md: 6 }, py: { xs: 4, md: 8 }, backgroundColor: '#fff' }}>
       <Box sx={{
@@ -108,6 +112,7 @@ export function Contacto() {
                   bgcolor: '#0c075388',
                 },
               }}
+              onClick={handleContactClick}
             >
               Contactar un asesor
             </Button>

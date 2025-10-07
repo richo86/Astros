@@ -42,7 +42,7 @@ export function ProductCarousel({ open, onClose, images, texts, title }: Product
         sx: {
           width: { xs: '95vw', sm: '700px', md: '900px' },
           maxWidth: '95vw',
-          height: { xs: '65vh', sm: '500px', md: '500px' },
+          height: { xs: '65vh', sm: '400px', md: '430px' },
           maxHeight: '70vh',
         }
       }}
@@ -55,7 +55,7 @@ export function ProductCarousel({ open, onClose, images, texts, title }: Product
         >
           <CloseIcon />
         </IconButton>
-        <Typography variant="h5" sx={{ mt: 2, mb: 4, textAlign: 'center', fontWeight: 'bold' }}>{title}</Typography>
+        <Typography variant="h5" sx={{ mt: 2, mb: 2, textAlign: 'center', fontWeight: 'bold' }}>{title}</Typography>
         <Box
           sx={{ position: 'relative', width: '100%', height: { xs: '40vh', sm: '220px', md: '300px' }, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           onMouseEnter={() => setPaused(true)}
@@ -65,7 +65,7 @@ export function ProductCarousel({ open, onClose, images, texts, title }: Product
             onClick={handlePrev}
             sx={{
               position: 'absolute',
-              top: 120,
+              top: { xs: 40, sm: 100, md: 120 },
               left: 0,
               minWidth: 0,
               px: 2,
@@ -77,7 +77,7 @@ export function ProductCarousel({ open, onClose, images, texts, title }: Product
             <img
               src={images[current]}
               alt={title}
-              style={{ width: '100%', height: '100%', maxHeight: '340px', objectFit: 'contain', borderRadius: 12, background: '#fff' }}
+              style={{ width: '100%', height: '100%', maxHeight: '250px', objectFit: 'contain', borderRadius: 12, background: '#fff' }}
               loading="lazy"
             />
             <Typography sx={{ mt: 3, textAlign: 'center', fontSize: { xs: 12, sm: 13, md: 14 }, maxWidth: '95%' }}>{texts[current]}</Typography>
@@ -86,7 +86,7 @@ export function ProductCarousel({ open, onClose, images, texts, title }: Product
             onClick={handleNext}
             sx={{
               position: 'absolute',
-              top: 120,
+              top: { xs: 80, sm: 100, md: 120 },
               right: 0,
               minWidth: 0,
               px: 2,

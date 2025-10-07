@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { ProductCarousel } from './ProductCarousel';
 import {
   Card,
@@ -27,16 +27,19 @@ import img15 from '../assets/images/Pinturas.png';
 import img16 from '../assets/images/Discos.png';
 import img17 from '../assets/images/Tuberias.png';
 import img18 from '../assets/images/Impermeabilizacion.png';
-import img19 from '../assets/images/Herramientas.png';
-import img20 from '../assets/images/Herramientas.png';
-import img21 from '../assets/images/Herramientas.png';
-import img22 from '../assets/images/Herramientas.png';
+import img19 from '../assets/images/Generales.jpg';
+import img20 from '../assets/images/Capacitaciones.jpg';
+import img21 from '../assets/images/Remodelaciones.jpg';
+import img22 from '../assets/images/Electrico.jpg';
+import img23 from '../assets/images/EPP.jpg';
+import img24 from '../assets/images/Servicios.jpg';
+import img25 from '../assets/images/Ferretero.jpg';
 
 const products = [
   {
     title: 'Productos Eléctricos',
     description: 'Soluciones completas en baja y media tensión.',
-    cover: img1,
+    cover: img22,
     images: [img1, img2, img3, img4, img5, img6, img7],
     texts: [
       'Sistemas de iluminación',
@@ -51,7 +54,7 @@ const products = [
   {
     title: 'Equipos de Protección Personal',
     description: 'Dotación completa para seguridad industrial.',
-    cover: img1,
+    cover: img23,
     images: [img8, img9, img10, img11, img12, img13, img14],
     texts: [
       'Protección craneal',
@@ -66,7 +69,7 @@ const products = [
   {
     title: 'Productos Ferreteros',
     description: 'Herramientas profesionales y materiales de ferretería.',
-    cover: img1,
+    cover: img25,
     images: [img15, img16, img17, img18, img19],
     texts: [
       'Pinturas',
@@ -79,8 +82,8 @@ const products = [
   {
     title: 'Unidad de servicios',
     description: 'Servicios integrales eléctricos y de mantenimiento.',
-    cover: img1,
-    images: [img20, img21, img22],
+    cover: img24,
+    images: [img19, img20, img21],
     texts: [
       'Instalaciones eléctricas en general: Baja y media tensión, empalmes y terminales, estudios y balanceos de carga, plantas eléctricas, tableros de control, protecciones eléctricas, tableros de control, protecciones eléctricas, iluminación interior y exterior, sistemas fotovoltaicos (paneles solares)',
       'Capacitaciones y asesorías técnicas en: Teoria de cables, seminarios de conexiones elécricas, taller de empalmes y terminales de media tensión y equipos de protección personal',
@@ -91,9 +94,16 @@ const products = [
 
 const ProductCard = styled(Card)(({ theme }) => ({
   position: 'relative',
-  height: '350px',
+  height: '250px',
   maxWidth: '400px',
   mx: 'auto',
+  transition: 'transform 2s cubic-bezier(0.23, 1, 0.32, 1), opacity 2s cubic-bezier(0.23, 1, 0.32, 1)',
+  opacity: 0.3,
+  transform: 'translateY(60px) rotate(-8deg)',
+  '&.card-visible': {
+    opacity: 1,
+    transform: 'translateY(0) rotate(0deg)',
+  },
   '&:hover .overlay': {
     opacity: 0.8,
   },
@@ -116,6 +126,90 @@ const TextContent = styled(Box)(({ theme }) => ({
   }));
 
 
+type ProductType = typeof products[0];
+interface ProductCardGridProps {
+  products: ProductType[];
+  handleClickOpen: (idx: number) => void;
+}
+
+const ProductCardGrid = React.memo(function ProductCardGrid({ products, handleClickOpen }: ProductCardGridProps) {
+  const productCardsRef = useRef<Array<HTMLDivElement | null>>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('card-visible');
+          } else {
+            entry.target.classList.remove('card-visible');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentCards = productCardsRef.current;
+    currentCards.forEach((card) => {
+      if (card) {
+        observer.observe(card);
+      }
+    });
+
+    return () => {
+      currentCards.forEach((card) => {
+        if (card) {
+          observer.unobserve(card);
+        }
+      });
+    };
+  }, [products]);
+
+  return (
+    <Grid container sx={{ display: 'flex', flexWrap: 'wrap', maxWidth: 'lg', mx: 'auto', justifyContent: 'center' }}>
+      {products.map((product, idx) => (
+        <Grid
+          key={product.title}
+          sx={{
+            flex: { xs: '0 0 100%', sm: '0 0 30%', md: '0 0 40%' },
+            justifyContent: 'center',
+            minWidth: 0,
+            padding: (theme) => theme.spacing(1.5)
+          }}
+        >
+          <ProductCard ref={(el) => (productCardsRef.current[idx] = el)}>
+            <CardActionArea onClick={() => handleClickOpen(idx)} sx={{ height: '100%' }}>
+              <CardMedia
+                component="img"
+                image={product.cover}
+                alt={product.title}
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  zIndex: 0,
+                }}
+              />
+              <TextContent className="text-content">
+                <Typography variant="h6" component="div" gutterBottom>
+                  {product.title}
+                </Typography>
+                <Typography variant="body2">
+                  {product.description}
+                </Typography>
+              </TextContent>
+            </CardActionArea>
+          </ProductCard>
+        </Grid>
+      ))}
+    </Grid>
+  );
+});
+
+
 const ProductosComponent = () => {
   console.log('Productos rendered')
   const [open, setOpen] = useState(false);
@@ -131,66 +225,15 @@ const ProductosComponent = () => {
     });
   }, []);
 
-  const handleClickOpen = (idx: number) => {
+  const handleClickOpen = useCallback((idx: number) => {
     setSelectedProductIdx(idx);
     setOpen(true);
-  };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setOpen(false);
     setSelectedProductIdx(null);
-  };
-
-  type ProductType = typeof products[0];
-  interface ProductCardGridProps {
-    products: ProductType[];
-    handleClickOpen: (idx: number) => void;
-  }
-
-  const ProductCardGrid = React.memo(function ProductCardGrid({ products, handleClickOpen }: ProductCardGridProps) {
-    return (
-      <Grid container sx={{ display: 'flex', flexWrap: 'wrap', maxWidth: 'lg', mx: 'auto', justifyContent: 'center' }}>
-        {products.map((product, idx) => (
-          <Grid
-            key={product.title}
-            sx={{
-              flex: { xs: '0 0 100%', sm: '0 0 30%', md: '0 0 40%' },
-              justifyContent: 'center',
-              minWidth: 0,
-              padding: (theme) => theme.spacing(1.5)
-            }}
-          >
-            <ProductCard>
-              <CardActionArea onClick={() => handleClickOpen(idx)} sx={{ height: '100%' }}>
-                <CardMedia
-                  component="img"
-                  image={product.cover}
-                  alt={product.title}
-                  sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    zIndex: 0,
-                  }}
-                />
-                <TextContent className="text-content">
-                  <Typography variant="h6" component="div" gutterBottom>
-                    {product.title}
-                  </Typography>
-                  <Typography variant="body2">
-                    {product.description}
-                  </Typography>
-                </TextContent>
-              </CardActionArea>
-            </ProductCard>
-          </Grid>
-        ))}
-      </Grid>
-    );
-  });
+  }, []);
 
   return (
     <Box sx={{ px: { xs: 3, md: 6 }, py: { xs: 4, md: 16 }, mb: 0, backgroundColor: '#ffffffff', minHeight: '100vh' }}>

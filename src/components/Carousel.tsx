@@ -4,7 +4,7 @@
  * Carousel component that displays a fullscreen image slideshow
  * with automatic transitions and fade effects.
  */
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { styled } from '@mui/material';
 
 const MENU_HEIGHT = 80;
@@ -91,7 +91,7 @@ interface CarouselProps {
   readonly shouldFadeOut: boolean;
 }
 
-export function Carousel({ images, shouldFadeOut }: CarouselProps) {
+const Carousel = ({ images, shouldFadeOut }: CarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const SLIDE_INTERVAL = 5000;
@@ -129,3 +129,5 @@ export function Carousel({ images, shouldFadeOut }: CarouselProps) {
     </CarouselContainer>
   );
 }
+
+export default memo(Carousel);

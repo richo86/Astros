@@ -6,7 +6,7 @@
 import { Card, CardContent, CardMedia, Typography, Grid, Box, CardActionArea } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { ProductCarousel } from './ProductCarousel';
 
 const services = [
@@ -26,7 +26,7 @@ const services = [
     texts: [
       'Residenciales: Instalaciones, mantenimiento y soluciones eléctricas seguras y eficientes para hogares, garantizando el confort y la protección de su familia.',
       'Comerciales e industriales: Servicios eléctricos especializados para negocios, oficinas y plantas industriales, optimizando la operación y cumpliendo con normativas vigentes.',
-      'Diseños eléctricos: Elaboración de proyectos eléctricos personalizados, planos y cálculos técnicos para nuevas construcciones y remodelaciones.',
+      'Diseños eléctricos: Elaboración de proyectos eléctricos personalizados, planos y cálculos técnicos para nuevas construiscrucciones y remodelaciones.',
       'Cableados: Instalación y organización profesional de cableados eléctricos, estructurados y de comunicación, asegurando funcionalidad y orden.',
       'Acometidas: Gestión e instalación de acometidas eléctricas, desde el punto de suministro hasta el interior del inmueble, cumpliendo estándares de seguridad.',
       'Remodelaciones eléctricas: Actualización y mejora de sistemas eléctricos existentes, adaptando la infraestructura a nuevas necesidades y tecnologías.',
@@ -80,18 +80,107 @@ const Item = styled(Paper)(({ theme }) => ({
     }),
   }));
 
+const AnimatedGridItem = styled(Grid)({
+  transition: 'opacity 0.6s ease-in-out, transform 0.5s ease-in-out',
+  opacity: 0,
+  transform: 'translateY(40px)',
+  '&.card-visible': {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+});
+
+const ServiceGrid = React.memo(function ServiceGrid({ services, handleClickOpen }: { services: typeof services, handleClickOpen: (idx: number) => void }) {
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('card-visible');
+          } else {
+            entry.target.classList.remove('card-visible');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentRefs = cardRefs.current;
+    currentRefs.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      currentRefs.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, [services]);
+
+  return (
+    <Grid
+      container
+      spacing={4}
+      sx={{
+        display: 'flex',
+        flexWrap: { xs: 'wrap', md: 'nowrap' }
+      }}
+    >
+      {services.map((service, idx) => (
+        <AnimatedGridItem
+          key={service.title}
+          ref={(el) => (cardRefs.current[idx] = el)}
+          sx={{
+            flex: { xs: '0 0 100%', md: 1 },
+            minWidth: 0,
+            mb: { xs: 2, md: 0 }
+          }}
+        >
+          <Item sx={{ maxWidth: '400px', mx: 'auto' }}>
+            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <CardActionArea onClick={() => handleClickOpen(idx)} sx={{ height: '100%' }}>
+                <CardMedia
+                  component="img"
+                  image={service.images[0]}
+                  alt={service.title}
+                  sx={{
+                    height: { xs: '300px', md: '250px' },
+                    width: '100%',
+                    objectFit: 'cover',
+                    aspectRatio: '1/1'
+                  }}
+                />
+                <CardContent sx={{ bgcolor: '#d7d7d7', flexGrow: 1, minHeight: '140px' }}>
+                  <Typography variant="h6" gutterBottom component="h3">
+                    {service.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {service.description}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Item>
+        </AnimatedGridItem>
+      ))}
+    </Grid>
+  );
+});
+
 const ServiciosComponent = () => {
   const [open, setOpen] = useState(false);
   const [selectedServiceIdx, setSelectedServiceIdx] = useState<number | null>(null);
 
-  const handleClickOpen = (idx: number) => {
+  const handleClickOpen = useCallback((idx: number) => {
     setSelectedServiceIdx(idx);
     setOpen(true);
-  };
-  const handleClose = () => {
+  }, []);
+  const handleClose = useCallback(() => {
     setOpen(false);
     setSelectedServiceIdx(null);
-  };
+  }, []);
 
   return (
     <div className='bg-[#ccc]'>
@@ -126,51 +215,7 @@ const ServiciosComponent = () => {
             }}
           />
         </Box>
-        <Grid
-          container
-          spacing={4}
-          sx={{
-            display: 'flex',
-            flexWrap: { xs: 'wrap', md: 'nowrap' }
-          }}
-        >
-          {services.map((service, idx) => (
-            <Grid
-              key={service.title}
-              sx={{
-                flex: { xs: '0 0 100%', md: 1 },
-                minWidth: 0,
-                mb: { xs: 2, md: 0 }
-              }}
-            >
-              <Item sx={{ maxWidth: '400px', mx: 'auto' }}>
-                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                  <CardActionArea onClick={() => handleClickOpen(idx)} sx={{ height: '100%' }}>
-                    <CardMedia
-                      component="img"
-                      image={service.images[0]}
-                      alt={service.title}
-                      sx={{
-                        height: { xs: '300px', md: '250px' },
-                        width: '100%',
-                        objectFit: 'cover',
-                        aspectRatio: '1/1'
-                      }}
-                    />
-                    <CardContent sx={{ bgcolor: '#d7d7d7', flexGrow: 1, minHeight: '140px' }}>
-                      <Typography variant="h6" gutterBottom component="h3">
-                        {service.title}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {service.description}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Item>
-            </Grid>
-          ))}
-        </Grid>
+        <ServiceGrid services={services} handleClickOpen={handleClickOpen} />
         {selectedServiceIdx !== null && (
           <ProductCarousel
             open={open}

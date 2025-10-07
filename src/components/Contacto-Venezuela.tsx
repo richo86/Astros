@@ -1,15 +1,17 @@
 // Copyright (c) 2025 Isis Astros. All rights reserved.
 
 import { Typography, Button, Box, Grid, Paper } from '@mui/material';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import GoogleMapComponent from './Map';
+import contactImage from '../assets/images/Contacto2.jpg';
 
 const iconStyle = { mr: 2, color: 'primary.main' };
 
 export function ContactoVenezuela() {
+  const handleContactClick = () => {
+    window.open('https://wa.me/+584146270108', '_blank')
+  };
   return (
     <Box sx={{ px: { xs: 3, md: 6 }, py: { xs: 4, md: 8 }, backgroundColor: '#fff' }}>
       <Box sx={{
@@ -64,25 +66,25 @@ export function ContactoVenezuela() {
             flexDirection: 'column',
             alignItems: 'flex-start'
           }}>
-            <Typography variant="h5" component="h3" gutterBottom color="black" sx={{ textAlign: 'left', width: '100%' }}>
+            <Typography variant="h5" component="h3" gutterBottom color="black" sx={{ textAlign: 'left', width: '100%', mt: 2, mb: 4 }}>
               LLamanos
             </Typography>
 
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
               <PhoneIcon sx={iconStyle} />
               <Typography variant="body1">
                 (+58) 4146270108
               </Typography>
             </Box>
 
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
               <EmailIcon sx={iconStyle} />
               <Typography variant="body1">
                 contacto@isiastros.com
               </Typography>
             </Box>
 
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 6 }}>
               <AccessTimeIcon sx={iconStyle} />
               <Typography variant="body1">
                 Lunes a Viernes: 8:00 AM - 5:00 PM<br />
@@ -98,6 +100,7 @@ export function ContactoVenezuela() {
                   bgcolor: '#0c075388',
                 },
               }}
+              onClick={handleContactClick}
             >
               Contactar un asesor
             </Button>
@@ -110,15 +113,13 @@ export function ContactoVenezuela() {
             minWidth: 0,
             padding: theme => theme.spacing(2)
           }}
-        >          <Paper elevation={3} sx={{ 
+        >
+          <Paper elevation={3} sx={{ 
               height: '400px',
               width: '100%',
-              display: 'flex',
               overflow: 'hidden'
             }}>
-            <Box sx={{ flexGrow: 1 }}>
-              <GoogleMapComponent />
-            </Box>
+            <img src={contactImage} alt="Contacto" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </Paper>
         </Grid>
       </Grid>

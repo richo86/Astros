@@ -8,7 +8,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Box, styled, Fab } from '@mui/material';
 import { GlobalStyles } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { Carousel } from '../components/Carousel';
+import Carousel from '../components/Carousel';
 import { Nosotros } from '../components/Nosotros';
 import { Servicios } from '../components/Servicios';
 import { Productos } from '../components/Productos';
@@ -41,6 +41,20 @@ function Home() {
   const contentRef = useRef<HTMLDivElement>(null);
   const { selectedCountry, initialCountryLoading } = useLocation();
 
+  // WhatsApp numbers by country
+  const whatsappNumbers: Record<string, string> = {
+    Colombia: '+573002640220',
+    Venezuela: '+584146270108',
+    Default: '+573002640220',
+  };
+
+  const getWhatsappNumber = () => {
+    if (selectedCountry && whatsappNumbers[selectedCountry]) {
+      return whatsappNumbers[selectedCountry];
+    }
+    return whatsappNumbers.Default;
+  };
+
   const images = [
     img1,
     img3,
@@ -68,7 +82,7 @@ function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShouldShowCarousel(window.scrollY < 800);
+      setShouldShowCarousel(window.scrollY < 1000);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -85,6 +99,7 @@ function Home() {
       }} />
       <Box sx={{ minHeight: '200vh', paddingTop: '5rem' }}>
         {shouldShowCarousel && <Carousel images={images} shouldFadeOut={false} />}
+
 
         <ContentSection ref={contentRef}>
             <Box id="productos">
@@ -116,7 +131,7 @@ function Home() {
               backgroundColor: '#168f4e',
             }
           }}
-          onClick={() => window.open('https://wa.me/3002640220', '_blank')}
+          onClick={() => window.open(`https://wa.me/${getWhatsappNumber()}`, '_blank')}
         >
           <WhatsAppIcon sx={{ color: '#fff', fontSize: 30, animation: 'pulse 1.2s infinite' }} />
         </Fab>
