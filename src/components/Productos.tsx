@@ -34,6 +34,7 @@ import img22 from '../assets/images/Electrico.jpg';
 import img23 from '../assets/images/EPP.jpg';
 import img24 from '../assets/images/Servicios.jpg';
 import img25 from '../assets/images/Ferretero.jpg';
+import img26 from '../assets/images/Herramientas.png';
 
 const products = [
   {
@@ -42,13 +43,13 @@ const products = [
     cover: img22,
     images: [img1, img2, img3, img4, img5, img6, img7],
     texts: [
-      'Sistemas de iluminación',
-      'Cables',
-      'Plantas eléctricas',
-      'Terminales de baja y media tension',
-      'Cintas eléctricas',
-      'Empalmes eléctricos de baja y media tension',
-      'Protecciones eléctricas',
+      'Sistemas LED de alta eficiencia, luminarias industriales y decorativas, iluminación de emergencia y control de iluminación inteligente',
+      'Cables de baja y media tensión, conductores especiales, cableado estructurado y fibra óptica certificados',
+      'Plantas eléctricas diésel y gasolina, sistemas de respaldo UPS, y transferencias automáticas',
+      'Terminales para conexiones seguras en baja y media tensión, conectores industriales y accesorios de conexión',
+      'Cintas aislantes profesionales, cintas de alto voltaje, cintas autofundentes y cintas de señalización',
+      'Empalmes premoldeados para media tensión, kits de empalme termocontráctil y conexiones especializadas',
+      'Interruptores termomagnéticos, DPS, protección diferencial y sistemas de puesta a tierra',
     ]
   },
   {
@@ -57,26 +58,26 @@ const products = [
     cover: img23,
     images: [img8, img9, img10, img11, img12, img13, img14],
     texts: [
-      'Protección craneal',
-      'Protección visual',
-      'Protección auditiva',
-      'Protección respiratoria',
-      'Protección corporal',
-      'Guantes',
-      'Botas de seguridad'
+      'Cascos de seguridad certificados, barbiquejos, protectores faciales y accesorios para trabajo en altura',
+      'Gafas de seguridad con protección UV, monogafas para químicos y caretas faciales con diversos recubrimientos',
+      'Protectores auditivos tipo copa y tapones con diferentes niveles de atenuación para ambientes industriales',
+      'Respiradores para partículas, máscaras con filtros especializados y equipos de respiración autónoma',
+      'Overoles, trajes especializados resistentes a químicos, chalecos reflectivos y ropa de trabajo ignífuga',
+      'Guantes de diferentes materiales para protección mecánica, química, térmica y eléctrica',
+      'Calzado de seguridad con puntera, suela antideslizante y protección dieléctrica certificada'
     ]
   },
   {
     title: 'Productos Ferreteros',
     description: 'Herramientas profesionales y materiales de ferretería.',
     cover: img25,
-    images: [img15, img16, img17, img18, img19],
+    images: [img15, img16, img17, img18, img26],
     texts: [
-      'Pinturas',
-      'Discos',
-      'Tuberías',
-      'Impermeabilizantes',
-      'Herramientas'
+      'Pinturas arquitectónicas, epóxicas, anticorrosivas y recubrimientos especializados para diferentes superficies',
+      'Discos de corte y pulido para metal y concreto, brocas especializadas y accesorios para herramientas',
+      'Tuberías PVC, EMT, IMC y accesorios para instalaciones eléctricas e hidráulicas certificadas',
+      'Membranas impermeabilizantes, recubrimientos acrílicos y sistemas de impermeabilización profesional',
+      'Herramientas manuales y eléctricas profesionales, equipos de medición y diagnóstico certificados'
     ]
   },
   {
@@ -97,18 +98,21 @@ const ProductCard = styled(Card)(({ theme }) => ({
   height: '250px',
   maxWidth: '400px',
   mx: 'auto',
-  transition: 'transform 2s cubic-bezier(0.23, 1, 0.32, 1), opacity 2s cubic-bezier(0.23, 1, 0.32, 1)',
-  opacity: 0.3,
-  transform: 'translateY(60px) rotate(-8deg)',
-  '&.card-visible': {
-    opacity: 1,
-    transform: 'translateY(0) rotate(0deg)',
-  },
+  opacity: 1,
   '&:hover .overlay': {
     opacity: 0.8,
   },
   '&:hover .text-content': {
     opacity: 1,
+  },
+  [theme.breakpoints.down('sm')]: {
+    transition: 'transform 2s cubic-bezier(0.23, 1, 0.32, 1), opacity 2s cubic-bezier(0.23, 1, 0.32, 1)',
+    opacity: 0.3,
+    transform: 'translateY(60px) rotate(-8deg)',
+    '&.card-visible': {
+      opacity: 1,
+      transform: 'translateY(0) rotate(0deg)',
+    },
   },
 }));
 
@@ -236,12 +240,12 @@ const ProductosComponent = () => {
   }, []);
 
   return (
-    <Box sx={{ px: { xs: 3, md: 6 }, py: { xs: 4, md: 16 }, mb: 0, backgroundColor: '#ffffffff', minHeight: '100vh' }}>
+    <Box sx={{ px: { xs: 3, md: 6 }, py: { xs: 2, md: 4 }, backgroundColor: '#ffffffff' }}>
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        mb: 4
+        mb: 2
       }}>
         <Typography
           variant="h3"
@@ -251,8 +255,8 @@ const ProductosComponent = () => {
           sx={{
             textAlign: 'center',
             fontSize: { xs: '2.5rem', md: '3rem' },
-            mt:7,
-            mb: 1,
+            mt: 0,
+            mb: 0,
             fontWeight: 'bold'
           }}
         >            Productos

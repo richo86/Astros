@@ -34,7 +34,7 @@ function Menu() {
       : 'https://www.tiktok.com/@isiastros.colombia',
     Facebook: selectedCountry === 'Venezuela'
       ? 'https://www.facebook.com/isiastros'
-      : 'https://www.facebook.com/isiastroscolombia',
+      : 'https://www.facebook.com/isiastroscol',
     LinkedIn: selectedCountry === 'Venezuela'
       ? 'https://www.linkedin.com/in/ingenier%C3%ADa-y-servicios-integrales-astros-sas-isiastros-980164300/'
       : 'https://www.linkedin.com/in/ingenier%C3%ADa-y-servicios-integrales-astros-sas-isiastros-980164300/',

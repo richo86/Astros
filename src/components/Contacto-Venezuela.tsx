@@ -19,7 +19,7 @@ export function ContactoVenezuela() {
         flexDirection: 'column',
         alignItems: 'center',
         mb: 2,
-        mt: 14
+        mt: 4
       }}>
         <Typography
           variant="h3"
@@ -80,7 +80,7 @@ export function ContactoVenezuela() {
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
               <EmailIcon sx={iconStyle} />
               <Typography variant="body1">
-                contacto@isiastros.com
+                isiastros@gmail.com
               </Typography>
             </Box>
 

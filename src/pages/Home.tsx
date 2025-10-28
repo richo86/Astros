@@ -11,11 +11,13 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Carousel from '../components/Carousel';
 import { Nosotros } from '../components/Nosotros';
 import { Servicios } from '../components/Servicios';
+import { ServiciosVenezuela } from '../components/ServiciosVenezuela';
 import { Productos } from '../components/Productos';
 import { ProductosVenezuela } from '../components/Productos-Venezuela';
 import { Contacto } from '../components/Contacto';
 import { ContactoVenezuela } from '../components/Contacto-Venezuela';
 import Footer from '../components/Footer';
+import Marcas from '../components/Marcas';
 import { useLocation } from '../contexts/LocationContext';
 import img1 from '../assets/images/banner-astros-1.jpg';
 import img3 from '../assets/images/banner-astros-3.jpg';
@@ -27,9 +29,7 @@ import img5 from '../assets/images/banner-astros-5.jpg';
 const ContentSection = styled('div')({
   position: 'relative',
   zIndex: 1,
-  marginTop: '100vh',
-  background: 'linear-gradient(to bottom, rgba(249, 250, 251, 0.8), rgba(249, 250, 251, 1) 200px)',
-  backdropFilter: 'blur(10px)',
+  background: '#f9fafb',
   '& > .MuiContainer-root': {
     position: 'relative',
     zIndex: 2
@@ -78,16 +78,6 @@ function Home() {
 
     return () => observer.disconnect();
   }, []);
-  const [shouldShowCarousel, setShouldShowCarousel] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShouldShowCarousel(window.scrollY < 1000);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <>
       <GlobalStyles styles={{
@@ -97,22 +87,33 @@ function Home() {
           '100%': { transform: 'scale(1)' }
         }
       }} />
-      <Box sx={{ minHeight: '200vh', paddingTop: '5rem' }}>
-        {shouldShowCarousel && <Carousel images={images} shouldFadeOut={false} />}
+      <Box>
+        <Box sx={{ 
+          height: 'calc(100vh - 5rem)', 
+          position: 'relative',
+          marginBottom: 4,
+          marginTop: '5rem'
+        }}>
+          <Carousel images={images} shouldFadeOut={false} />
+        </Box>
 
 
         <ContentSection ref={contentRef}>
-            <Box id="productos">
-              {initialCountryLoading || selectedCountry !== 'Venezuela' ? <Productos /> : <ProductosVenezuela />}
-            </Box>
+          <Box id="productos">
+            {initialCountryLoading || selectedCountry !== 'Venezuela' ? <Productos /> : <ProductosVenezuela />}
+          </Box>
 
-            <Box id="servicios"><Servicios /></Box>
+          <Box id="servicios">
+            {initialCountryLoading || selectedCountry !== 'Venezuela' ? <Servicios /> : <ServiciosVenezuela />}
+          </Box>
 
-            <Box id="nosotros"><Nosotros /></Box>
+          <Box id="nosotros"><Nosotros /></Box>
 
-            <Box id="contacto">
-              {initialCountryLoading || selectedCountry !== 'Venezuela' ? <Contacto /> : <ContactoVenezuela />}
-            </Box>
+          <Box id="marcas"><Marcas /></Box>
+
+          <Box id="contacto">
+            {initialCountryLoading || selectedCountry !== 'Venezuela' ? <Contacto /> : <ContactoVenezuela />}
+          </Box>
 
           <Footer />
         </ContentSection>

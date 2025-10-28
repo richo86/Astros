@@ -107,17 +107,17 @@ export function Nosotros() {
               }}
             />
             <Typography variant="body1" color="text.secondary" sx={{ mb: 3, fontSize: '1.1rem' }}>
-              Somos una empresa multinacional dedicada a proveer soluciones integrales que nos permiten ofrecer servicios
-               y productos de calidad, especializados en las diferentes ramas de la ingeniería,
-                así mismo en las áreas de electricidad, seguridad industrial, telecomunicaciones,
-                 construcción entre otras, con la finalidad de brindarles de esta forma el mejor servicio,
-                  que satisfaga las necesidades de nuestros clientes. 
+              Somos una empresa multinacional dedicada a ofrecer soluciones integrales en las diferentes ramas de la ingeniería.
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 3, fontSize: '1.1rem' }}>
+              Nos especializamos en brindar servicios y productos de alta calidad en las áreas de electricidad, seguridad industrial, telecomunicaciones y construcción, entre otras, con el compromiso de satisfacer de manera eficiente las necesidades de nuestros clientes y garantizar resultados confiables.
 
             </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
-              Nuestra organización se encuentra conformada por un equipo multidisciplinario de colaboradores de  gran trayectoria profesional,
-               encargado de proveer la mejor experiencia a nuestros clientes, nos encontramos integrados por profesionales de la ingeniería
-                en las áreas de electricidad, telecomunicaciones, sistemas y civil.
+            <Typography variant="body1" color="text.secondary" sx={{ mb:3, fontSize: '1.1rem' }}>
+              Asimismo, contamos con una sólida línea comercial dedicada al suministro de productos y materiales eléctricos en general, materiales ferreteros y equipos de protección personal (EPP), trabajando con marcas reconocidas y garantizando estándares de calidad superiores.
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 3, fontSize: '1.1rem' }}>
+              Nuestro equipo está conformado por un grupo multidisciplinario de profesionales con amplia trayectoria, integrado por ingenieros especializados en electricidad, telecomunicaciones, sistemas y obras civiles, comprometidos en ofrecer una experiencia integral, eficiente y orientada a la excelencia.
             </Typography>
           </Box>
         </Grid>

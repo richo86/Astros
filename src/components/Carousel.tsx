@@ -9,12 +9,10 @@ import { styled } from '@mui/material';
 
 const MENU_HEIGHT = 80;
 const CarouselContainer = styled('div')(() => ({
-  position: 'fixed',
-  top: `${MENU_HEIGHT}px`,
-  left: 0,
-  right: 0,
-  height: `calc(100vh - ${MENU_HEIGHT}px)`,
-  zIndex: -1,
+  position: 'relative',
+  width: '100%',
+  height: '100%',
+  overflow: 'hidden',
   '&::after': {
     content: '""',
     position: 'absolute',

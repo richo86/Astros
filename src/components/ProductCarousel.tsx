@@ -42,12 +42,12 @@ export function ProductCarousel({ open, onClose, images, texts, title }: Product
         sx: {
           width: { xs: '95vw', sm: '700px', md: '900px' },
           maxWidth: '95vw',
-          height: { xs: '65vh', sm: '400px', md: '430px' },
-          maxHeight: '70vh',
+          height: { xs: '80vh', sm: '70vh', md: '80vh', lg: '70vh', xl: '55vh' },
+          maxHeight: '80vh',
         }
       }}
     >
-      <Box sx={{ position: 'relative', p: 2, height: '100%' }}>
+  <Box sx={{ position: 'relative', p: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <IconButton
           aria-label="close"
           onClick={onClose}
@@ -55,9 +55,27 @@ export function ProductCarousel({ open, onClose, images, texts, title }: Product
         >
           <CloseIcon />
         </IconButton>
-        <Typography variant="h5" sx={{ mt: 2, mb: 2, textAlign: 'center', fontWeight: 'bold' }}>{title}</Typography>
+  <Typography
+    variant="h5"
+    sx={{
+      mt: { xs: 1, sm: 2, md: 2, lg: 2, xl: 6 },
+      mb: 2,
+      textAlign: 'center',
+      fontWeight: 'bold'
+    }}
+  >
+    {title}
+  </Typography>
         <Box
-          sx={{ position: 'relative', width: '100%', height: { xs: '40vh', sm: '220px', md: '300px' }, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          sx={{ 
+            position: 'relative', 
+            width: '100%', 
+            height: { xs: '60vh', sm: '50vh', md: '55vh', lg: '45vh' }, 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            mt: 0
+          }}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
@@ -65,7 +83,8 @@ export function ProductCarousel({ open, onClose, images, texts, title }: Product
             onClick={handlePrev}
             sx={{
               position: 'absolute',
-              top: { xs: 40, sm: 100, md: 120 },
+              top: '50%',
+              transform: 'translateY(-50%)',
               left: 0,
               minWidth: 0,
               px: 2,
@@ -73,20 +92,45 @@ export function ProductCarousel({ open, onClose, images, texts, title }: Product
               zIndex: 2,
             }}
           >&lt;</Button>
-          <Box sx={{ width: { xs: '90%', sm: '85%', md: '80%' }, mx: 'auto', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
-            <img
+          <Box sx={{ 
+            width: { xs: '90%', sm: '85%', md: '80%' }, 
+            mx: 'auto', 
+            height: '100%', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center', 
+            justifyContent: 'flex-start',
+            gap: 2,
+            pb: 1
+          }}>
+            <Box
+              component="img"
               src={images[current]}
               alt={title}
-              style={{ width: '100%', height: '100%', maxHeight: '250px', objectFit: 'contain', borderRadius: 12, background: '#fff' }}
               loading="lazy"
+              sx={{ 
+                width: '100%', 
+                height: { xs: '55%', sm: '60%', md: '60%', lg: '65%', xl: '65%' }, 
+                objectFit: 'contain', 
+                borderRadius: '12px', 
+                bgcolor: 'background.paper' 
+              }}
             />
-            <Typography sx={{ mt: 3, textAlign: 'center', fontSize: { xs: 12, sm: 13, md: 14 }, maxWidth: '95%' }}>{texts[current]}</Typography>
+            <Typography sx={{ 
+              mt: 2, 
+              textAlign: 'center', 
+              fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' }, 
+              maxWidth: '95%',
+              maxHeight: '25%',
+              overflowY: 'auto'
+            }}>{texts[current]}</Typography>
           </Box>
           <Button
             onClick={handleNext}
             sx={{
               position: 'absolute',
-              top: { xs: 80, sm: 100, md: 120 },
+              top: '50%',
+              transform: 'translateY(-50%)',
               right: 0,
               minWidth: 0,
               px: 2,

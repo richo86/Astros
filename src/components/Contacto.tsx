@@ -21,7 +21,7 @@ export function Contacto() {
         flexDirection: 'column',
         alignItems: 'center',
         mb: 2,
-        mt: 14
+        mt: 4
       }}>
         <Typography
           variant="h3"
@@ -46,8 +46,9 @@ export function Contacto() {
             mb: 2
           }}
         />
-        <Typography variant="body1" color="text.secondary" sx={{ textAlign: 'center' }}>
-          Para servicios eléctricos confiables y profesionales, contáctenos.
+        <Typography variant="body1" color="text.secondary" sx={{ textAlign: 'center', maxWidth: { lg: '800px', xl: '1000px' }, mx: 'auto' }}>
+          ¿Necesita información sobre nuestros productos o servicios?<br />
+          Ya sea para asesoría técnica, cotizaciones o consultas generales, estamos aquí para ayudarle.
         </Typography>
       </Box>
 
@@ -91,7 +92,7 @@ export function Contacto() {
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <EmailIcon sx={iconStyle} />
               <Typography variant="body1">
-                contacto@isiastros.com
+                isiastros@gmail.com
               </Typography>
             </Box>
 

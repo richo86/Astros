@@ -31,3 +31,28 @@ html, body, #root {
   max-height: 500px; /* Limit vertical size of the carousel image */
   display: block;
 }
+
+/* svg */
+@media screen and (min-width: 768px) {
+.svgcolor-light {
+  top: 50px;
+  right: 0px;
+  position: relative;
+}
+}
+@media screen and (min-width: 1200px) {
+.svgcolor-light {
+  top: 50px;
+  right: 0px;
+  position: relative;
+}
+}
+.svgcolor-light > path {
+  fill: white;
+  stroke: white;
+  stroke-width: 0;
+}
+
+.MuiBox-root .css-0 {
+  background-color:#fff;
+}
