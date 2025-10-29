@@ -9,10 +9,10 @@ import Paper from '@mui/material/Paper';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { ProductCarousel } from './ProductCarousel';
 import img1 from '../assets/images/domesticos.jpg';
-import img2 from '../assets/images/industria.jpg';
+import img2 from '../assets/images/looking-up.jpg';
 import img3 from '../assets/images/plans.jpg';
 import img4 from '../assets/images/cables-servicios.jpg';
-import img5 from '../assets/images/acometidas.jpg';
+import img5 from '../assets/images/empalme.jpg';
 import img6 from '../assets/images/remodeling.jpg';
 import img7 from '../assets/images/tramites.jpg';
 import img8 from '../assets/images/carro.jpg';
@@ -40,12 +40,12 @@ const services = [
       img2,
       img3,
       img4,
-      img5,
+      img10,
       img6,
       img7,
       img8,
       img9,
-      img10,
+      img5,
       img11
     ],
     texts: [
@@ -184,11 +184,11 @@ const ServiceGrid = React.memo(function ServiceGrid({ services, handleClickOpen 
                       aspectRatio: '1/1'
                     }}
                   />
-                  <CardContent sx={{ bgcolor: '#d7d7d7', flexGrow: 1, minHeight: '140px' }}>
+                  <CardContent sx={{ bgcolor: '#F2C82F', flexGrow: 1, minHeight: '140px' }}>
                     <Typography variant="h6" gutterBottom component="h3">
                       {service.title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" sx={{fontSize: '1rem'}}>
                       {service.description}
                     </Typography>
                   </CardContent>

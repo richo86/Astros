@@ -30,25 +30,25 @@ import img18 from '../assets/images/Impermeabilizacion.png';
 import img19 from '../assets/images/Generales.jpg';
 import img20 from '../assets/images/Capacitaciones.jpg';
 import img21 from '../assets/images/Remodelaciones.jpg';
-import img22 from '../assets/images/Electrico.jpg';
 import img23 from '../assets/images/EPP.jpg';
 import img24 from '../assets/images/Servicios.jpg';
 import img25 from '../assets/images/Ferretero.jpg';
 import img26 from '../assets/images/Herramientas.png';
+import img27 from '../assets/images/elec-panel.jpg';
 
 const products = [
   {
     title: 'Productos Eléctricos',
     description: 'Soluciones completas en baja y media tensión.',
-    cover: img22,
+    cover: img27,
     images: [img1, img2, img3, img4, img5, img6, img7],
     texts: [
       'Sistemas LED de alta eficiencia, luminarias industriales y decorativas, iluminación de emergencia y control de iluminación inteligente',
       'Cables de baja y media tensión, conductores especiales, cableado estructurado y fibra óptica certificados',
-      'Plantas eléctricas diésel y gasolina, sistemas de respaldo UPS, y transferencias automáticas',
+      'Plantas eléctricas diésel, gasolina y gas, sistemas de respaldo UPS, y transferencias automáticas',
       'Terminales para conexiones seguras en baja y media tensión, conectores industriales y accesorios de conexión',
-      'Cintas aislantes profesionales, cintas de alto voltaje, cintas autofundentes y cintas de señalización',
-      'Empalmes premoldeados para media tensión, kits de empalme termocontráctil y conexiones especializadas',
+      'Cintas eléctricas especializadas, cintas aislantes profesionales, cintas de alto voltaje, cintas autofundentes y cintas de señalización',
+      'Empalmes premoldeados para media tensión, empalmes de resina, kits de empalme termocontráctil y conexiones especializadas',
       'Interruptores termomagnéticos, DPS, protección diferencial y sistemas de puesta a tierra',
     ]
   },
@@ -86,7 +86,7 @@ const products = [
     cover: img24,
     images: [img19, img20, img21],
     texts: [
-      'Instalaciones eléctricas en general: Baja y media tensión, empalmes y terminales, estudios y balanceos de carga, plantas eléctricas, tableros de control, protecciones eléctricas, tableros de control, protecciones eléctricas, iluminación interior y exterior, sistemas fotovoltaicos (paneles solares)',
+      'Instalaciones eléctricas en general: Baja y media tensión, empalmes y terminales, estudios y balanceos de carga, plantas eléctricas, tableros de control, protecciones eléctricas, tableros de control, protecciones eléctricas, iluminación interior y exterior, sistemas fotovoltaicos (paneles solares), sistemas de conexión para carga de vehículos eléctricos',
       'Capacitaciones y asesorías técnicas en: Teoria de cables, seminarios de conexiones elécricas, taller de empalmes y terminales de media tensión y equipos de protección personal',
       'Decoración de espacios interiores y exteriores, fabricación de muebles personalizados para ornamentación, pintura y adecuación de áreas',
     ]

@@ -6,12 +6,26 @@
 import React, { useState } from 'react';
 import { useLocation } from '../contexts/LocationContext';
 import logo from '../assets/images/LOGO ASTROS_Fblanco.png';
+import { Box, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+import colombiaFlag from '../assets/flags/colombia.svg';
+import venezuelaFlag from '../assets/flags/venezuela.svg';
 
 interface MenuLinkProps {
   readonly href: string;
   readonly children: React.ReactNode;
   readonly onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
+
+const COUNTRY_DATA = {
+  Colombia: {
+    name: 'Colombia',
+    flag: colombiaFlag,
+  },
+  Venezuela: {
+    name: 'Venezuela',
+    flag: venezuelaFlag,
+  }
+};
 
 function MenuLink({ href, children, onClick }: MenuLinkProps) {
   return (
@@ -23,7 +37,7 @@ function MenuLink({ href, children, onClick }: MenuLinkProps) {
 
 function Menu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { selectedCountry } = useLocation();
+  const { selectedCountry, setSelectedCountry } = useLocation();
   // Social media links by country
   const socialLinks = {
     Instagram: selectedCountry === 'Venezuela'
@@ -42,6 +56,10 @@ function Menu() {
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setSelectedCountry(event.target.value as string);
   };
 
   const handleScroll = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -81,10 +99,43 @@ function Menu() {
   return (
     <header className="bg-[#0c0753] text-white fixed top-0 left-0 right-0 z-50">      
       <div className="relative flex flex-col md:flex-row items-stretch h-16 md:h-20">
-        <div className="py-2 md:py-0 -ml-[100vw] md:ml-0 pl-[100vw] md:pl-0 -mr-[100vw] md:mr-0 pr-[100vw] md:pr-0 flex items-center justify-center w-screen md:w-[200px] h-full">
-          <a href="#" onClick={(e) => handleScroll(e, '#')} className="px-4">
-            <img src={logo} alt="Astros Logo" className="h-12 md:h-16" />
-          </a>
+        <div className="py-2 md:py-0 -ml-[100vw] md:ml-0 pl-[100vw] md:pl-0 -mr-[100vw] md:mr-0 pr-[100vw] md:pr-0 flex items-center justify-center w-screen md:w-auto h-full">
+          <div className="flex items-center">
+            <a href="#" onClick={(e) => handleScroll(e, '#')} className="px-4">
+              <img src={logo} alt="Astros Logo" className="h-12 md:h-16" />
+            </a>
+            <Select
+              variant="standard"
+              disableUnderline
+              id="country-select-menu"
+              value={selectedCountry}
+              onChange={handleChange}
+              sx={{
+                color: 'white',
+                fontSize: '0.875rem',
+                '.MuiSelect-icon': {
+                  color: 'white',
+                  right: 0,
+                },
+                '& .MuiSelect-select': {
+                  paddingRight: '24px !important',
+                  display: 'flex',
+                  alignItems: 'center',
+                }
+              }}
+              renderValue={(value) => (
+                <Box component="img" src={COUNTRY_DATA[value as keyof typeof COUNTRY_DATA].flag} alt={`${COUNTRY_DATA[value as keyof typeof COUNTRY_DATA].name} flag`} sx={{ width: 30, height: 20, objectFit: 'cover' }} />
+              )}
+            >
+              {Object.entries(COUNTRY_DATA).map(([key, data]) => (
+                <MenuItem key={key} value={key}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Box component="img" src={data.flag as string} alt={`${data.name} flag`} sx={{ width: 18, height: 12, objectFit: 'cover' }} /> {data.name}
+                  </Box>
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
         </div>
 
         <div className="hidden md:flex flex-1 items-center justify-between px-4">

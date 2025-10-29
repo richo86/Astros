@@ -34,21 +34,23 @@ import img22 from '../assets/images/Electrico.jpg';
 import img23 from '../assets/images/EPP.jpg';
 import img24 from '../assets/images/Servicios.jpg';
 import img25 from '../assets/images/Ferretero.jpg';
+import img26 from '../assets/images/Herramientas.png';
+import img27 from '../assets/images/elec-panel.jpg';
 
 const products = [
   {
     title: 'Productos Eléctricos',
     description: 'Soluciones completas en baja y media tensión.',
-    cover: img22,
+    cover: img27,
     images: [img1, img2, img3, img4, img5, img6, img7],
     texts: [
-      'Sistemas de iluminación',
-      'Cables',
-      'Plantas eléctricas',
-      'Terminales de baja y media tension',
-      'Cintas eléctricas',
-      'Empalmes eléctricos de baja y media tension',
-      'Protecciones eléctricas',
+      'Sistemas LED de alta eficiencia, luminarias industriales y decorativas, iluminación de emergencia y control de iluminación inteligente',
+      'Cables de baja y media tensión, conductores especiales, cableado estructurado y fibra óptica certificados',
+      'Plantas eléctricas diésel, gasolina y gas, sistemas de respaldo UPS, y transferencias automáticas',
+      'Terminales para conexiones seguras en baja y media tensión, conectores industriales y accesorios de conexión',
+      'Cintas eléctricas especializadas, cintas aislantes profesionales, cintas de alto voltaje, cintas autofundentes y cintas de señalización',
+      'Empalmes premoldeados para media tensión, empalmes de resina, kits de empalme termocontráctil y conexiones especializadas',
+      'Interruptores termomagnéticos, DPS, protección diferencial y sistemas de puesta a tierra',
     ]
   },
   {
@@ -57,26 +59,26 @@ const products = [
     cover: img23,
     images: [img8, img9, img10, img11, img12, img13, img14],
     texts: [
-      'Protección craneal',
-      'Protección visual',
-      'Protección auditiva',
-      'Protección respiratoria',
-      'Protección corporal',
-      'Guantes',
-      'Botas de seguridad'
+      'Cascos de seguridad certificados, barbiquejos, protectores faciales y accesorios para trabajo en altura',
+      'Gafas de seguridad con protección UV, monogafas para químicos y caretas faciales con diversos recubrimientos',
+      'Protectores auditivos tipo copa y tapones con diferentes niveles de atenuación para ambientes industriales',
+      'Respiradores para partículas, máscaras con filtros especializados y equipos de respiración autónoma',
+      'Overoles, trajes especializados resistentes a químicos, chalecos reflectivos y ropa de trabajo ignífuga',
+      'Guantes de diferentes materiales para protección mecánica, química, térmica y eléctrica',
+      'Calzado de seguridad con puntera, suela antideslizante y protección dieléctrica certificada'
     ]
   },
   {
     title: 'Productos Ferreteros',
     description: 'Herramientas profesionales y materiales de ferretería.',
     cover: img25,
-    images: [img15, img16, img17, img18, img19],
+    images: [img15, img16, img17, img18, img26],
     texts: [
-      'Pinturas',
-      'Discos',
-      'Tuberías',
-      'Impermeabilizantes',
-      'Herramientas'
+      'Pinturas arquitectónicas, epóxicas, anticorrosivas y recubrimientos especializados para diferentes superficies',
+      'Discos de corte y pulido para metal y concreto, brocas especializadas y accesorios para herramientas',
+      'Tuberías PVC, EMT, IMC y accesorios para instalaciones eléctricas e hidráulicas certificadas',
+      'Membranas impermeabilizantes, recubrimientos acrílicos y sistemas de impermeabilización profesional',
+      'Herramientas manuales y eléctricas profesionales, equipos de medición y diagnóstico certificados'
     ]
   },
   {
@@ -85,7 +87,7 @@ const products = [
     cover: img24,
     images: [img19, img20, img21],
     texts: [
-      'Instalaciones eléctricas en general: Baja y media tensión, empalmes y terminales, estudios y balanceos de carga, plantas eléctricas, tableros de control, protecciones eléctricas, tableros de control, protecciones eléctricas, iluminación interior y exterior, sistemas fotovoltaicos (paneles solares)',
+      'Instalaciones eléctricas en general: Baja y media tensión, empalmes y terminales, estudios y balanceos de carga, plantas eléctricas, tableros de control, protecciones eléctricas, tableros de control, protecciones eléctricas, iluminación interior y exterior, sistemas fotovoltaicos (paneles solares), sistemas de conexión para carga de vehículos eléctricos',
       'Capacitaciones y asesorías técnicas en: Teoria de cables, seminarios de conexiones elécricas, taller de empalmes y terminales de media tensión y equipos de protección personal',
       'Decoración de espacios interiores y exteriores, fabricación de muebles personalizados para ornamentación, pintura y adecuación de áreas',
     ]
