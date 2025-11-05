@@ -19,10 +19,15 @@ import { ContactoVenezuela } from '../components/Contacto-Venezuela';
 import Footer from '../components/Footer';
 import Marcas from '../components/Marcas';
 import { useLocation } from '../contexts/LocationContext';
-import img1 from '../assets/images/banner-astros-1.jpg';
-import img3 from '../assets/images/banner-astros-3.jpg';
-import img4 from '../assets/images/banner-astros-4.jpg';
-import img5 from '../assets/images/banner-astros-5.jpg';
+import { useMemo } from 'react';
+import colombiaImg1 from '../assets/images/banner-astros-1.jpg';
+import colombiaImg3 from '../assets/images/banner-astros-3.jpg';
+import colombiaImg4 from '../assets/images/banner-astros-4.jpg';
+import colombiaImg5 from '../assets/images/banner-astros-5.jpg';
+import venezuelaImg1 from '../assets/images/Banner1VZLA.jpg';
+import venezuelaImg2 from '../assets/images/Banner2VZLA.jpg';
+import venezuelaImg3 from '../assets/images/Banner3VZLA.jpg';
+import venezuelaImg4 from '../assets/images/Banner4VZLA.jpg';
 
 
 
@@ -55,12 +60,24 @@ function Home() {
     return whatsappNumbers.Default;
   };
 
-  const images = [
-    img1,
-    img3,
-    img4,
-    img5
-  ];
+  const images = useMemo(() => {
+    const colombiaImages = [
+      colombiaImg1,
+      colombiaImg3,
+      colombiaImg4,
+      colombiaImg5
+    ];
+    const venezuelaImages = [
+      venezuelaImg1,
+      venezuelaImg2,
+      venezuelaImg3,
+      venezuelaImg4
+    ];
+    if (selectedCountry === 'Venezuela') {
+      return venezuelaImages;
+    }
+    return colombiaImages;
+  }, [selectedCountry]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
