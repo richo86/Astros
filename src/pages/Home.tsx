@@ -106,10 +106,10 @@ function Home() {
       }} />
       <Box>
         <Box sx={{ 
-          height: 'calc(100vh - 5rem)', 
+          height: { xs: '30vh', md: 'calc(100vh - 5rem)' },
           position: 'relative',
           marginBottom: 4,
-          marginTop: '5rem'
+          marginTop: {xs: '4rem', md: '5rem'}
         }}>
           <Carousel images={images} shouldFadeOut={false} />
         </Box>

@@ -98,47 +98,45 @@ function Menu() {
 
   return (
     <header className="bg-[#0c0753] text-white fixed top-0 left-0 right-0 z-50">      
-      <div className="relative flex flex-col md:flex-row items-stretch h-16 md:h-20">
-        <div className="py-2 md:py-0 -ml-[100vw] md:ml-0 pl-[100vw] md:pl-0 -mr-[100vw] md:mr-0 pr-[100vw] md:pr-0 flex items-center justify-center w-screen md:w-auto h-full">
-          <div className="flex items-center">
-            <a href="#" onClick={(e) => handleScroll(e, '#')} className="px-4">
-              <img src={logo} alt="Astros Logo" className="h-12 md:h-16" />
-            </a>
-            <Select
-              variant="standard"
-              disableUnderline
-              id="country-select-menu"
-              value={selectedCountry}
-              onChange={handleChange}
-              sx={{
+      <div className="relative flex items-center justify-between md:justify-start h-16 md:h-20 px-4">
+        <div className="flex items-center">
+          <a href="#" onClick={(e) => handleScroll(e, '#')} className="pr-4">
+            <img src={logo} alt="Astros Logo" className="h-12 md:h-16" />
+          </a>
+          <Select
+            variant="standard"
+            disableUnderline
+            id="country-select-menu"
+            value={selectedCountry}
+            onChange={handleChange}
+            sx={{
+              color: 'white',
+              fontSize: '0.875rem',
+              '.MuiSelect-icon': {
                 color: 'white',
-                fontSize: '0.875rem',
-                '.MuiSelect-icon': {
-                  color: 'white',
-                  right: 0,
-                },
-                '& .MuiSelect-select': {
-                  paddingRight: '24px !important',
-                  display: 'flex',
-                  alignItems: 'center',
-                }
-              }}
-              renderValue={(value) => (
-                <Box component="img" src={COUNTRY_DATA[value as keyof typeof COUNTRY_DATA].flag} alt={`${COUNTRY_DATA[value as keyof typeof COUNTRY_DATA].name} flag`} sx={{ width: 30, height: 20, objectFit: 'cover' }} />
-              )}
-            >
-              {Object.entries(COUNTRY_DATA).map(([key, data]) => (
-                <MenuItem key={key} value={key}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Box component="img" src={data.flag as string} alt={`${data.name} flag`} sx={{ width: 18, height: 12, objectFit: 'cover' }} /> {data.name}
-                  </Box>
-                </MenuItem>
-              ))}
-            </Select>
-          </div>
+                right: 0,
+              },
+              '& .MuiSelect-select': {
+                paddingRight: '24px !important',
+                display: 'flex',
+                alignItems: 'center',
+              }
+            }}
+            renderValue={(value) => (
+              <Box component="img" src={COUNTRY_DATA[value as keyof typeof COUNTRY_DATA].flag} alt={`${COUNTRY_DATA[value as keyof typeof COUNTRY_DATA].name} flag`} sx={{ width: 30, height: 20, objectFit: 'cover' }} />
+            )}
+          >
+            {Object.entries(COUNTRY_DATA).map(([key, data]) => (
+              <MenuItem key={key} value={key}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Box component="img" src={data.flag as string} alt={`${data.name} flag`} sx={{ width: 18, height: 12, objectFit: 'cover' }} /> {data.name}
+                </Box>
+              </MenuItem>
+            ))}
+          </Select>
         </div>
 
-        <div className="hidden md:flex flex-1 items-center justify-between px-4">
+        <div className="hidden md:flex flex-1 items-center justify-between pl-4">
           <style>{`
             .social-icon {
               display: inline-block;
@@ -178,12 +176,11 @@ function Menu() {
             <MenuLink href="#nosotros" onClick={(e) => handleScroll(e, '#nosotros')}>Nosotros</MenuLink>
             <MenuLink href="#contacto" onClick={(e) => handleScroll(e, '#contacto')}>Contacto</MenuLink>
           </nav>
-      </div>
-
+        </div>
         <button
           type="button"
           onClick={handleMenuToggle}
-          className={`md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-white p-2 z-50 ${isMenuOpen && 'opacity-0'}`}
+          className={`md:hidden text-white p-2 z-50 ${isMenuOpen && 'opacity-0'}`}
           aria-label="Toggle navigation menu"
           aria-controls="mobile-menu">
           <div className="w-6 h-5 relative flex flex-col justify-between">
@@ -192,28 +189,28 @@ function Menu() {
             <span className={`w-full h-0.5 bg-white transition-all duration-500 ${hamburgerBottomClass}`}/>
           </div>
         </button>
+      </div>
 
-        <div
-          id="mobile-menu"
-          tabIndex={-1}
-          className={`md:hidden fixed inset-0 bg-[rgb(30,45,59)] z-40 transition-all duration-500 ease-in-out ${mobileMenuClass}`}>
-          <button
-            type="button"
-            onClick={() => setIsMenuOpen(false)}
-            className={`absolute top-6 right-6 text-white p-2 hover:bg-white/10 rounded transition-colors`}
-            aria-label="Close menu">
-            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          <nav className="h-full flex flex-col items-center justify-center space-y-8 text-xl">
-            <MenuLink href="#servicios" onClick={(e) => handleScroll(e, '#servicios')}>Servicios</MenuLink>
-            <MenuLink href="#nosotros" onClick={(e) => handleScroll(e, '#nosotros')}>Nosotros</MenuLink>
+      <div
+        id="mobile-menu"
+        tabIndex={-1}
+        className={`md:hidden fixed inset-0 bg-[rgb(30,45,59)] z-40 transition-all duration-500 ease-in-out ${mobileMenuClass}`}>
+        <button
+          type="button"
+          onClick={() => setIsMenuOpen(false)}
+          className={`absolute top-6 right-6 text-white p-2 hover:bg-white/10 rounded transition-colors`}
+          aria-label="Close menu">
+          <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <nav className="h-full flex flex-col items-center justify-center space-y-8 text-xl">
+          <MenuLink href="#servicios" onClick={(e) => handleScroll(e, '#servicios')}>Servicios</MenuLink>
+          <MenuLink href="#nosotros" onClick={(e) => handleScroll(e, '#nosotros')}>Nosotros</MenuLink>
             <MenuLink href="#productos" onClick={(e) => handleScroll(e, '#productos')}>Productos</MenuLink>
             <MenuLink href="#contacto" onClick={(e) => handleScroll(e, '#contacto')}>Contacto</MenuLink>
           </nav>
         </div>
-      </div>
     </header>
   );
 }

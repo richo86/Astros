@@ -44,7 +44,7 @@ function Footer() {
             minWidth: '200px'
           }
         }}>
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
             <Button color="inherit" href="#terminos">
               Términos de Servicio
             </Button>
@@ -52,7 +52,7 @@ function Footer() {
               Política de Privacidad
             </Button>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
             <Button
               component="a"
               href={catalogPdf}
